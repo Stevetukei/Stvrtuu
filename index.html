@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEVETUKEI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles-container"></div>
+    <div class="floating-texts"></div>
+    <div class="music-effects"></div>
+    
+    <div class="main-content">
+        <div class="card main-card">
+            <div class="glow"></div>
+            <header>
+                <h1 class="zxc-font">STEVETUKEI</h1>
+                <p class="quote">«The moonlight's illumination makes it easier to see how pathetic you are.» — Ryomen Sukuna</p>
+            </header>
+            
+            <section class="music-section">
+                <div class="player-container">
+                    <iframe class="spotify-player" style="border-radius:12px" src="https://open.spotify.com/embed/track/29uR0xblYorp3L66rvHQ3h?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <div class="track-buttons">
+                        <button onclick="prevTrack()">⟨</button>
+                        <button onclick="nextTrack()">⟩</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="dota-section">
+                <h2 class="zxc-font hero-title">MY FAVORITE HERO</h2>
+                <p class="hero-name">INVOKER</p>
+                <div class="dota-glyphs">† † † † †</div>
+            </section>
+        </div>
+
+        <div class="bottom-cards">
+            <div class="card social-card">
+                <div class="social-content">
+                    <i class="fab fa-discord social-icon"></i>
+                    <span class="social-text">st1vetuuu add as friend</span>
+                </div>
+            </div>
+            
+            <div class="card social-card">
+                <div class="social-content">
+                    <i class="fab fa-telegram social-icon"></i>
+                    <span class="social-text">@st1vetuuu add as friend</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zxctext">
+        <span>ZXC</span>
+        <span>ONLI</span>
+        <span>MID</span>
+        <span>GG</span>
+        <span>FIED</span>
+        <span>OR</span>
+        <span>FEED</span>
+        <span>PICK</span>
+        <span>BAN</span>
+        <span>KDA</span>
+        <span>EZ</span>
+        <span>WP</span>
+    </div>
+
+    <script>
+        // Треки
+        const tracks = [
+            "29uR0xblYorp3L66rvHQ3h",
+            "0IqPxWXirS8dHbdUdsqOog",
+            "2vhyG6wMN64nlNakXJeKZ1",
+            "5uX7sUKp3kKgYGCkKLGlY4",
+            "6z78f17Xmbr5cvVrafURi9",
+            "5NHt9dF2faknIROTbqEchE",
+            "4C5BDHPQuJ5K49XsAK8uq2"
+        ];
+        
+        let currentTrack = 0;
+        let isPlaying = false;
+        let effectInterval;
+        
+        function changeTrack(index) {
+            currentTrack = index;
+            document.querySelector('.spotify-player').src = `https://open.spotify.com/embed/track/${tracks[currentTrack]}?utm_source=generator`;
+            if (isPlaying) {
+                createMusicEffects();
+            }
+        }
+        
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % tracks.length;
+            changeTrack(currentTrack);
+        }
+        
+        function prevTrack() {
+            currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+            changeTrack(currentTrack);
+        }
+
+        // Создание частиц фона
+        const particlesContainer = document.querySelector('.particles-container');
+        const particles = ['†', '✧', '✦', '✵', '✺', '✹', '✷', '✳', '✴', '♥'];
+        
+        for (let i = 0; i < 200; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = -10 + 'px';
+            particle.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+            particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            particle.style.opacity = Math.random() * 0.4 + 0.1;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Эффекты при воспроизведении музыки
+        const musicEffectsContainer = document.querySelector('.music-effects');
+        
+        function createMusicEffects() {
+            clearInterval(effectInterval);
+            
+            effectInterval = setInterval(() => {
+                for (let i = 0; i < 5; i++) {
+                    const effect = document.createElement('div');
+                    effect.className = 'music-effect';
+                    effect.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    
+                    const playerRect = document.querySelector('.player-container').getBoundingClientRect();
+                    const startX = playerRect.left + playerRect.width/2 + (Math.random() * 100 - 50);
+                    const startY = playerRect.top + playerRect.height/2 + (Math.random() * 50 - 25);
+                    
+                    effect.style.left = startX + 'px';
+                    effect.style.top = startY + 'px';
+                    effect.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                    effect.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    effect.style.opacity = Math.random() * 0.7 + 0.3;
+                    
+                    musicEffectsContainer.appendChild(effect);
+                    
+                    setTimeout(() => {
+                        effect.remove();
+                    }, 3000);
+                }
+            }, 300);
+        }
+        
+        // Отслеживание состояния плеера
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'src') {
+                    const iframe = document.querySelector('.spotify-player');
+                    if (iframe.src.includes('autoplay=1')) {
+                        isPlaying = true;
+                        createMusicEffects();
+                    } else {
+                        isPlaying = false;
+                        clearInterval(effectInterval);
+                    }
+                }
+            });
+        });
+        
+        observer.observe(document.querySelector('.spotify-player'), {
+            attributes: true,
+            attributeFilter: ['src']
+        });
+
+        // Плавный наклон карточки
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX - card.getBoundingClientRect().left;
+                const y = e.clientY - card.getBoundingClientRect().top;
+                
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+                
+                const rotateY = (x - centerX) / 25;
+                const rotateX = (centerY - y) / 25;
+                const translateZ = 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // Всплывающий текст
+        const floatingTexts = [
+            'ZXC', 'Ghoul', 'Ez mid', 'onli 1-2 pos', '1000-7', 'cry', 
+            'GG', 'GG,WP', 'SF Fp', 'IN Fp', 'Only Fied', 'coil coil', 
+            '???', 'ha-ha-ha-ha', 'KDA', 'MID OR FEED', 'PICK BAN'
+        ];
+        const floatingContainer = document.querySelector('.floating-texts');
+        
+        function createFloatingText() {
+            const count = Math.floor(Math.random() * 2) + 2;
+            
+            for (let i = 0; i < count; i++) {
+                const text = document.createElement('div');
+                text.className = 'floating-text';
+                text.textContent = floatingTexts[Math.floor(Math.random() * floatingTexts.length)];
+                text.style.left = Math.random() * 80 + 10 + '%';
+                text.style.top = Math.random() * 80 + 10 + '%';
+                text.style.fontSize = (Math.random() * 0.8 + 0.6) + 'rem';
+                text.style.opacity = 0;
+                text.style.animationDuration = '8s';
+                floatingContainer.appendChild(text);
+                
+                setTimeout(() => {
+                    text.remove();
+                }, 8000);
+            }
+        }
+        
+        setInterval(createFloatingText, 3000);
+
+        // Смена текста героя
+        const heroTitle = document.querySelector('.hero-title');
+        const heroName = document.querySelector('.hero-name');
+        const originalTitle = heroTitle.textContent;
+        const originalName = heroName.textContent;
+        
+        const invokerQuotes = [
+            "Я слышал писк?",
+            "За многие века я сменил немало имён, но лишь одно из них истинное - Карл!"
+        ];
+        
+        function changeHeroText() {
+            heroTitle.style.transition = 'opacity 1.5s ease';
+            heroName.style.transition = 'opacity 1.5s ease';
+            heroTitle.style.opacity = '0';
+            heroName.style.opacity = '0';
+            
+            setTimeout(() => {
+                const randomQuote = Math.random() > 0.5 ? invokerQuotes[0] : invokerQuotes[1];
+                heroTitle.textContent = "";
+                heroName.textContent = randomQuote;
+                
+                heroTitle.style.opacity = '1';
+                heroName.style.opacity = '1';
+                
+                const quoteTime = randomQuote === invokerQuotes[0] ? 6000 : 5000;
+                
+                setTimeout(() => {
+                    heroTitle.style.opacity = '0';
+                    heroName.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        heroTitle.textContent = originalTitle;
+                        heroName.textContent = originalName;
+                        heroTitle.style.opacity = '1';
+                        heroName.style.opacity = '1';
+                        
+                        setTimeout(changeHeroText, Math.random() * 15000 + 30000);
+                    }, 1500);
+                }, quoteTime);
+            }, 1500);
+        }
+        
+        setTimeout(changeHeroText, 5000);
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

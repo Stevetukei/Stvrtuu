@@ -1,0 +1,286 @@
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Частицы фона */
+.particles-container, 
+.floating-texts,
+.music-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    animation: floatDown linear infinite;
+    user-select: none;
+    will-change: transform;
+}
+
+@keyframes floatDown {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Эффекты музыки */
+.music-effect {
+    position: absolute;
+    color: rgba(255, 85, 85, 0.7);
+    animation: musicEffect linear;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(255,85,85,0.5);
+    will-change: transform, opacity;
+}
+
+@keyframes musicEffect {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Карточка */
+.card {
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(200, 200, 200, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    transition: transform 0.1s linear;
+    transform-style: preserve-3d;
+    will-change: transform;
+    margin-bottom: 20px;
+}
+
+.main-card {
+    margin-bottom: 30px;
+}
+
+.glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 70%);
+    z-index: -1;
+}
+
+/* Социальные карточки */
+.bottom-cards {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+    gap: 20px;
+}
+
+.social-card {
+    padding: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.social-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    width: 24px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.social-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Текст */
+.zxc-font {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+    will-change: transform;
+    transition: opacity 1.5s ease;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+.quote {
+    font-style: italic;
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+/* Секции */
+.music-section, .dota-section {
+    margin: 25px 0;
+}
+
+.player-container {
+    position: relative;
+    width: 100%;
+}
+
+.track-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.track-buttons button {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.track-buttons button:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.hero-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    transition: opacity 1.5s ease;
+}
+
+.hero-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    margin: 15px 0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    transition: opacity 1.5s ease;
+}
+
+.dota-glyphs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+    letter-spacing: 5px;
+}
+
+/* ZXC текст по бокам */
+.zxctext {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.03;
+}
+
+.zxctext span {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.08);
+    transform: rotate(-10deg);
+    writing-mode: vertical-rl;
+    user-select: none;
+    filter: blur(0.8px);
+}
+
+/* Всплывающий текст */
+.floating-text {
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    color: rgba(255, 255, 255, 0.4);
+    animation: fadeInOut 8s linear forwards;
+    z-index: -1;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    20% { opacity: 0.7; transform: scale(1) translateY(0); }
+    80% { opacity: 0.7; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(0.8) translateY(-20px); }
+}
